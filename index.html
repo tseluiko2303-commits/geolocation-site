@@ -1,1 +1,39 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Геолокация</title>
+</head>
+<body>
+
+<h1>Определение местоположения</h1>
+
+<button onclick="getLocation()">Показать моё местоположение</button>
+
+<p id="result"></p>
+
+<script>
+function getLocation() {
+  if (!navigator.geolocation) {
+    document.getElementById("result").innerText =
+      "Геолокация не поддерживается";
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    function(position) {
+      document.getElementById("result").innerHTML =
+        "Широта: " + position.coords.latitude +
+        "<br>Долгота: " + position.coords.longitude;
+    },
+    function(error) {
+      document.getElementById("result").innerText =
+        "Доступ к геолокации запрещён";
+    }
+  );
+}
+</script>
+
+</body>
+</html>
